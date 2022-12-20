@@ -8,27 +8,71 @@ Revising the Select Query II
 Query the NAME field for all American cities in the CITY table with populations larger than 120000. The CountryCode for America is USA.
 SELECT Name
 FROM City
-WHERE POPULATION > 120000 and COUNTRYCODE = 'USA'
+WHERE POPULATION > 120000 and COUNTRYCODE = 'USA';
 
 Select All
 Query all columns (attributes) for every row in the CITY table.
 SELECT *
-FROM City
+FROM City;
 
 Select By ID
 Query all columns for a city in CITY with the ID 1661.
 SELECT *
 FROM City
-WHERE ID = 1661
+WHERE ID = 1661;
 
 Japanese Cities' Attributes
 Query all attributes of every Japanese city in the CITY table. The COUNTRYCODE for Japan is JPN.\
 SELECT *
 FROM City
-WHERE COUNTRYCODE = 'JPN'
+WHERE COUNTRYCODE = 'JPN';
 
 Japanese Cities' Names
 Query the names of all the Japanese cities in the CITY table. The COUNTRYCODE for Japan is JPN.
 SELECT NAME
 FROM City
-WHERE COUNTRYCODE = 'JPN'
+WHERE COUNTRYCODE = 'JPN';
+
+Weather Observation Station 1
+Query a list of CITY and STATE from the STATION table.
+SELECT CITY, STATE
+FROM STATION;
+
+Weather Observation Station 3
+Query a list of CITY names from STATION for cities that have an even ID number. 
+Print the results in any order, but exclude duplicates from the answer.
+--Distinct means no duplicates and MOD calculates remainder--
+--MOD = 0 shows results of remainder = 0 and <> 0 is not equal to 0.-- 
+SELECT  DISTINCT CITY
+FROM STATION
+WHERE mod(ID,2) = 0;
+
+Weather Observation Station 4
+Find the difference between the total number of CITY entries in the table and the number of distinct CITY 
+entries in the table.
+--Don't forget the parentheses around the column--
+SELECT COUNT(City) - COUNT(DISTINCT CITY)
+FROM STATION;
+
+Weather Observation Station 5
+Query the two cities in STATION with the shortest and longest CITY names, as well as their respective lengths 
+(i.e.: number of characters in the name). If there is more than one smallest or largest city, 
+choose the one that comes first when ordered alphabetically.
+--Start broad and then work your way to narrowing out the data.--
+(SELECT CITY,LENGTH(CITY)
+FROM STATION
+ORDER BY LENGTH(CITY),CITY
+LIMIT 1)
+UNION
+(SELECT CITY, LENGTH(CITY)
+FROM STATION
+ORDER BY Length(CITY) DESC,CITY
+LIMIT 1);
+
+Weather Observation Station 6
+Query the list of CITY names starting with vowels (i.e., a, e, i, o, or u) from STATION. 
+Your result cannot contain duplicates.
+SELECT DISTINCT CITY
+FROM STATION
+WHERE CITY LIKE 'a%' OR CITY LIKE 'e%' OR CITY LIKE 'i%' OR CITY LIKE 'o%' OR CITY LIKE 'u%';
+
