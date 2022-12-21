@@ -121,7 +121,7 @@ FROM STATION
 WHERE LEFT(CITY,1) NOT IN ('A','E','I','O','U','a','e','i','o','u') AND RIGHT(CITY,1) NOT IN ('a','e','i','o','u')
 --Similar answer however this uses the AND operator which excludes cities with vowels at start and end (ACME).
 
-
+Higher Than 75 Marks
 
 
 
