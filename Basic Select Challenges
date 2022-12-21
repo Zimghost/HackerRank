@@ -41,24 +41,23 @@ FROM STATION;
 Weather Observation Station 3
 Query a list of CITY names from STATION for cities that have an even ID number. 
 Print the results in any order, but exclude duplicates from the answer.
---Distinct means no duplicates and MOD calculates remainder--
---MOD = 0 shows results of remainder = 0 and <> 0 is not equal to 0.-- 
 SELECT  DISTINCT CITY
 FROM STATION
 WHERE mod(ID,2) = 0;
+--Distinct means no duplicates and MOD calculates remainder--
+--MOD = 0 shows results of remainder = 0 and <> 0 is not equal to 0.-- 
 
 Weather Observation Station 4
 Find the difference between the total number of CITY entries in the table and the number of distinct CITY 
 entries in the table.
---Don't forget the parentheses around the column--
 SELECT COUNT(City) - COUNT(DISTINCT CITY)
 FROM STATION;
+--Don't forget the parentheses around the column--
 
 Weather Observation Station 5
 Query the two cities in STATION with the shortest and longest CITY names, as well as their respective lengths 
 (i.e.: number of characters in the name). If there is more than one smallest or largest city, 
 choose the one that comes first when ordered alphabetically.
---Start broad and then work your way to narrowing out the data.--
 (SELECT CITY,LENGTH(CITY)
 FROM STATION
 ORDER BY LENGTH(CITY),CITY
@@ -68,6 +67,7 @@ UNION
 FROM STATION
 ORDER BY Length(CITY) DESC,CITY
 LIMIT 1);
+--Start broad and then work your way to narrowing out the data.--
 
 Weather Observation Station 6
 Query the list of CITY names starting with vowels (i.e., a, e, i, o, or u) from STATION. 
@@ -75,4 +75,54 @@ Your result cannot contain duplicates.
 SELECT DISTINCT CITY
 FROM STATION
 WHERE CITY LIKE 'a%' OR CITY LIKE 'e%' OR CITY LIKE 'i%' OR CITY LIKE 'o%' OR CITY LIKE 'u%';
+--This can be done differently using a WHERE LEFT(CITY,1) IN ('A','E','I','O','U','a','e','i','o','u')--
+
+Weather Observation Station 7
+Query the list of CITY names ending with vowels (a, e, i, o, u) from STATION. 
+Your result cannot contain duplicates.
+SELECT DISTINCT CITY
+FROM STATION
+WHERE CITY LIKE '%a' OR CITY LIKE '%e' OR CITY LIKE '%i' OR CITY LIKE '%o' OR CITY LIKE '%u';
+-- This can be done differently using a WHERE RIGHT(CITY,1) IN ('a','e','i','o','u')--
+
+Weather Observation Station 8
+Query the list of CITY names from STATION which have vowels (i.e., a, e, i, o, and u) as both their first and last 
+characters. Your result cannot contain duplicates.
+SELECT DISTINCT CITY
+FROM STATION
+WHERE LEFT(CITY,1) IN ('A','E','I','O','U','a','e','i','o','u') AND RIGHT(CITY,1) IN ('a','e','i','o','u');
+--Using the last two examples I used the new methods to get the answer to this one.--
+
+Weather Observation Station 9
+Query the list of CITY names from STATION that do not start with vowels. Your result cannot contain duplicates.
+SELECT DISTINCT CITY
+FROM STATION
+WHERE LEFT(CITY,1) NOT IN ('A','E','I','O','U','a','e','i','o','u');
+-- I did not know about NOT IN which excludes what is in the parentheses.--
+
+Weather Observation Station 10
+Query the list of CITY names from STATION that do not end with vowels. Your result cannot contain duplicates.
+SELECT DISTINCT CITY
+FROM STATION
+WHERE RIGHT(CITY,1) NOT IN ('a','e','i','o','u');
+
+Weather Observation Station 11
+Query the list of CITY names from STATION that either do not start with vowels or do not end with vowels. 
+Your result cannot contain duplicates.
+SELECT DISTINCT CITY
+FROM STATION
+WHERE LEFT(CITY,1) NOT IN ('A','E','I','O','U','a','e','i','o','u') OR RIGHT(CITY,1) NOT IN ('a','e','i','o','u');
+
+Weather Observation Station 12
+Query the list of CITY names from STATION that do not start with vowels and do not end with vowels. 
+Your result cannot contain duplicates.
+SELECT DISTINCT CITY
+FROM STATION
+WHERE LEFT(CITY,1) NOT IN ('A','E','I','O','U','a','e','i','o','u') AND RIGHT(CITY,1) NOT IN ('a','e','i','o','u')
+--Similar answer however this uses the AND operator which excludes cities with vowels at start and end (ACME).
+
+
+
+
+
 
