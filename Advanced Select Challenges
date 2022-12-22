@@ -48,5 +48,6 @@ SELECT CONCAT('There are a total of ',COUNT(occupation), ' ',lower(occupation),'
 FROM Occupations
 GROUP BY occupation
 ORDER BY COUNT(occupation), occupation;
--- I learned about the CONCAT 
+-- I learned about the CONCAT function. Initially I thought it was just to combine columns in records for a new output,
+however I learned you can combine operators, columns, and strings within your query.--
 
