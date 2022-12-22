@@ -1,0 +1,23 @@
+Revising Aggregations - The Count Function
+Query a count of the number of cities in CITY having a Population larger than 100000.
+
+SELECT COUNT(*)
+FROM CITY
+WHERE POPULATION > 100000;
+-- COUNT function is the amount of times the condition occurs throughout the table.--
+
+Revising Aggregations - The Sum Function
+Query the total population of all cities in CITY where District is California.
+
+SELECT SUM(POPULATION)
+FROM CITY
+WHERE DISTRICT = 'California';
+--SUM is the total amount of the data that is referenced in the condition.--
+
+Revising Aggregations - Averages
+Query the average population of all cities in CITY where District is California.
+
+SELECT AVG(POPULATION)
+FROM CITY
+WHERE DISTRICT = 'California';
+-- AVG is a function that gets the average of the data that is querried under the condition.--
