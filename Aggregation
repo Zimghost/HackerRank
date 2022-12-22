@@ -21,3 +21,20 @@ SELECT AVG(POPULATION)
 FROM CITY
 WHERE DISTRICT = 'California';
 -- AVG is a function that gets the average of the data that is querried under the condition.--
+
+Average Population
+Query the average population for all cities in CITY, rounded down to the nearest integer.
+SELECT ROUND(AVG(POPULATION))
+FROM CITY;
+-- ROUND can be used to round the function--
+
+Japan Population
+Query the sum of the populations for all Japanese cities in CITY. The COUNTRYCODE for Japan is JPN.
+SELECT SUM(POPULATION)
+FROM CITY
+WHERE COUNTRYCODE = 'JPN';
+
+Population Density Difference
+Query the difference between the maximum and minimum populations in CITY.
+SELECT MAX(POPULATION) - MIN(POPULATION)
+FROM CITY;
