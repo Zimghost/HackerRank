@@ -1,0 +1,52 @@
+Type of Triangle
+
+Write a query identifying the type of each record in the TRIANGLES table using its three side lengths. 
+Output one of the following statements for each record in the table:
+
+Equilateral: It's a triangle with  sides of equal length.
+Isosceles: It's a triangle with  sides of equal length.
+Scalene: It's a triangle with  sides of differing lengths.
+Not A Triangle: The given values of A, B, and C don't form a triangle.
+
+SELECT 
+CASE
+    WHEN A = B AND B = C THEN 'Equilateral'
+    WHEN A = B OR A = C OR B = C THEN 'Isoceles' 
+    WHEN B <> A AND B <> C AND A + B > C THEN 'Scalene'
+    ELSE 'Not a Triangle'
+END AS TriangleType
+FROM Triangles;
+-- This was incorrect and I was wondering why, then after some talking with a friend he told me to do the Not a Triangle parameter first. --
+
+SELECT 
+CASE
+    WHEN A + B <= C OR A + C <= B OR B + C <= A THEN 'Not A Triangle'
+    WHEN A = B AND B = C THEN 'Equilateral'
+    WHEN A = B OR A = C OR B = C THEN 'Isosceles' 
+    ELSE 'Scalene'
+END AS TriangleType
+FROM Triangles;
+-- What I learned from this example, is that you need to start with what does not define a triangle and then identify the parameters of what triangle it would be. 
+Therefore at the beginning it would decide that it is not a triangle and not move on to the other parameters. -- 
+
+The PADS
+
+Generate the following two result sets:
+
+Query an alphabetically ordered list of all names in OCCUPATIONS, immediately followed by the first letter of each profession as a parenthetical 
+(i.e.: enclosed in parentheses). For example: AnActorName(A), ADoctorName(D), AProfessorName(P), and ASingerName(S).
+Query the number of ocurrences of each occupation in OCCUPATIONS. Sort the occurrences in ascending order, and output them in the following format:
+
+There are a total of [occupation_count] [occupation]s.
+where [occupation_count] is the number of occurrences of an occupation in OCCUPATIONS and [occupation] is the lowercase occupation name. 
+If more than one Occupation has the same [occupation_count], they should be ordered alphabetically.
+
+SELECT CONCAT(Name,'(',LEFT(occupation,1) ,')')
+FROM Occupations
+ORDER BY Name;
+SELECT CONCAT('There are a total of ',COUNT(occupation), ' ',lower(occupation),'s.')
+FROM Occupations
+GROUP BY occupation
+ORDER BY COUNT(occupation), occupation;
+-- I learned about the CONCAT 
+
