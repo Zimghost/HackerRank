@@ -48,6 +48,8 @@ FROM Employee
 GROUP BY (salary*months)
 ORDER BY TotalEarnings DESC
 LIMIT 1;
--- I was confused on the second part. Originally I did COUNT(MAX(salary*months)
+-- I was confused on the second part. Originally I did COUNT(MAX(salary*months), however I found out you can not do two aggregate functions together like that.
+Therefore the way around it is to do COUNT (*) which would count all the data but only to group it by that (salary*months) so we only count the earners within 
+that criteria.--
 
 
