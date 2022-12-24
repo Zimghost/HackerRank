@@ -104,3 +104,12 @@ Query the Manhattan Distance between points P1 and P2 and round it to a scale of
 SELECT ROUND(ABS(MIN(LAT_N) - MAX(LAT_N)),4) + ROUND(ABS(MIN(LONG_W) - MAX(LONG_W)),4)
 FROM STATION;
 
+Weather Observation Station 19
+Query the Euclidean Distance between points P1 and P2 and format your answer to display 4 decimal digits.
+SELECT ROUND(SQRT(POWER(MIN(LAT_N) - MIN(LONG_W),2) + POWER(MAX(LAT_N) - MAX(LONG_W),2)),4)
+FROM STATION;
+--I was confused on the Euclidiean Distance formula, howv er I got the structure of the formula in SQL correct.--
+SELECT ROUND(SQRT(POWER(MIN(LAT_N) - MAX(LAT_N),2) + POWER(MIN(LONG_W) - MAX(LONG_W),2)),4)
+FROM STATION;
+--Correct Answer--
+
