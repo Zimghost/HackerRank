@@ -1,0 +1,31 @@
+Population Census
+Given the CITY and COUNTRY tables, query the sum of the populations of all cities where the CONTINENT is 'Asia'.
+Note: CITY.CountryCode and COUNTRY.Code are matching key columns.
+
+SELECT sum(city.population)
+FROM City
+Inner JOIN COUNTRY ON city.CountryCode = Country.Code
+WHERE Continent = 'Asia'
+--Simple JOIN query. I hope throughout I start to learn the difference between all the joins. With these exercises because I am
+confused on the when to use LEFT,RIGHT, and FULL/CROSS JOIN.--
+
+African Cities
+Given the CITY and COUNTRY tables, query the names of all cities where the CONTINENT is 'Africa'.
+
+SELECT city.name
+FROM City
+Inner JOIN COUNTRY ON city.CountryCode = Country.Code
+WHERE Continent = 'Africa'
+--Same query as the last one aside from changing the criteria and what is being queried for. Same JOIN concept.--
+
+Average Population of Each Continent
+Given the CITY and COUNTRY tables, query the names of all the continents (COUNTRY.Continent) and their respective 
+average city populations (CITY.Population) rounded down to the nearest integer.
+
+SELECT Country.continent, FLOOR(AVG(city.population))
+FROM City
+INNER JOIN Country ON city.countrycode = country.code
+GROUP BY country.continent;
+--I was using round, but I figured out that FLOOR is used specifically to round down no matter the integer. ROUND would
+just round based on normal rounding criteria.--
+
